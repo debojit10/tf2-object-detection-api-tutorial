@@ -3,6 +3,7 @@ import cv2
 import time
 import argparse
 
+from google.colab.patches import cv2_imshow
 from detector import DetectorTF2
 
 
@@ -24,8 +25,8 @@ def DetectFromVideo(detector, Video_path, save_output=False, output_dir='output/
 		elapsed_time = round((time.time() - timestamp1) * 1000) #ms
 		img = detector.DisplayDetections(img, det_boxes, det_time=elapsed_time)
 
-		cv2.imshow('TF2 Detection', img)
-		if cv2.waitKey(1) == 27: break
+		cv2_imshow(img)
+# 		if cv2.waitKey(1) == 27: break
 
 		if save_output:
 			out.write(img)
@@ -88,4 +89,4 @@ if __name__ == "__main__":
 		DetectImagesFromFolder(detector, args.images_dir, save_output=args.save_output, output_dir=args.output_directory)
 
 	print("Done ...")
-	cv2.destroyAllWindows()
+# 	cv2.destroyAllWindows()
